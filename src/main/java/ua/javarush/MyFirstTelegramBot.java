@@ -98,7 +98,14 @@ public class MyFirstTelegramBot extends TelegramLongPollingBot {
 
        }
     }
+private void SendMessage(Long chatId, int glories, String picName, String text, Map<String, String> buttons) {
+addGlories(chatId, glories);
+SendPhoto photoMessage = createPhotoMessage(chatId, picName);
+executeAsync(photoMessage);
 
+SendMessage message = createMessage(chatId, text, buttons);
+sendApiMethodAsync(message);
+}
     public static void main(String[] args) throws TelegramApiException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(new MyFirstTelegramBot());
